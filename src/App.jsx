@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import myImage from "./assets/suv.jpg";
-import "./app.css";
+import "./App.css";
 
 export default function App() {
   const [formData, setFormData] = useState({
