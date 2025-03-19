@@ -200,7 +200,7 @@ body {
 }
 
 .vehicle-image {
-  width: 18rem;
+  width: -webkit-fill-available;
   height: 200px;
   object-fit: contain;
   border-radius: 0.5rem;
@@ -269,6 +269,6 @@ body {
   }
 
   .vehicle-image {
-    width: 18rem;
+    width: -webkit-fill-available;
   }
 }
