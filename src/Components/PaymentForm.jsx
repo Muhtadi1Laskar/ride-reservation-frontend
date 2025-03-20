@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import FormGroup from "./FormComponent";
-// import "../App.css";
 
-function PaymentForm({ onPaymentSubmit }) {
+function PaymentForm({ onPaymentSubmit, price }) {
   const [paymentData, setPaymentData] = useState({
-    paymentId: "",
-    amount: "",
+    paymentID: "",
+    amount: price,
+    email: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPaymentData({
       ...paymentData,
-      [name]: value,
+      [name]: name === "amount" ? parseFloat(value, 10) || 1 : value,
     });
   };
 
@@ -28,8 +28,8 @@ function PaymentForm({ onPaymentSubmit }) {
         <FormGroup
           label="Payment Id"
           type="text"
-          name="paymentId"
-          value={paymentData.paymentId}
+          name="paymentID"
+          value={paymentData.paymentID}
           placeholder="Enter the Payment ID"
           className="form-input"
           onChange={handleChange}
@@ -41,6 +41,16 @@ function PaymentForm({ onPaymentSubmit }) {
           name="amount"
           value={paymentData.amount}
           placeholder="Enter the Amount"
+          onChange={handleChange}
+          className="form-input"
+          required
+        />
+        <FormGroup
+          label="Email"
+          type="input"
+          name="email"
+          value={paymentData.email}
+          placeholder="Enter your email"
           onChange={handleChange}
           className="form-input"
           required

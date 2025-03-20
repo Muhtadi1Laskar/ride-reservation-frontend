@@ -223,7 +223,61 @@ body {
   margin-bottom: 0;
 }
 
+.success-container {
+  text-align: center;
+  margin-top: 2rem;
+}
 
+.success-message {
+  font-size: 1.125rem;
+  color: #333;
+}
+
+.success-button {
+  padding: 1rem 2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.success-button:hover {
+  background-color: #0056b3;
+}
+
+.mobile-friendly {
+  padding: 1rem; 
+}
+
+.success-title {
+  font-size: 1.5rem; /* Adjust title size for mobile */
+  text-align: center;
+  font-weight: 700;
+  color: #28a745; /* Green color for success */
+  margin-bottom: 2rem;
+}
+
+.success-message {
+  font-size: 1rem; /* Adjust message size for mobile */
+  text-align: center;
+}
+
+.success-buttons {
+  flex-direction: column; /* Stack buttons vertically on mobile */
+  align-items: center; /* Center buttons horizontally */
+  gap: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.mobile-button {
+  width: 100%; 
+  padding: 1rem;
+  font-size: 1rem;
+}
 
 @media (min-width: 768px) {
   .form-grid {
@@ -287,5 +341,25 @@ body {
 
   .vehicle-image {
     width: -webkit-fill-available;
+  }
+
+  .success-title {
+    font-size: 1.875rem;
+  }
+
+  .success-message {
+    font-size: 1.125rem;
+  }
+
+  .success-buttons {
+    flex-direction: row; 
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .mobile-button {
+    /* width: auto; */
+    padding: 1rem 2rem;
+    font-size: inherit;
   }
 }
