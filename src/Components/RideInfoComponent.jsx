@@ -62,7 +62,7 @@ export default function RideInComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setFormSubmitted(true);
+    setVehicles([]);
 
     try {
       const response = await fetch("https://ride-reservation.vercel.app/api/rides",
@@ -77,6 +77,7 @@ export default function RideInComponent() {
 
       setVehicles(result.vehicle || []);
       setTotalMileage(result.mileage || null);
+      setFormSubmitted(true);
     } catch (error) {
       console.error("Error fetching vehicles:", error);
     } finally {
@@ -134,12 +135,6 @@ export default function RideInComponent() {
               handleSubmit={handleSubmit}
             />
             {loading && <LoadingSpinner />}
-            {/* {vehicles.length > 0 && (
-              <VehicleList
-                vehicles={vehicles}
-                onVehicleSelect={handleVehicleSelect}
-              />
-            )} */}
             {vehicles.length > 0 ? (
               <>
                 <VehicleList
