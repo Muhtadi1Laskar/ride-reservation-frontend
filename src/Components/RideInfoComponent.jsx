@@ -9,7 +9,7 @@ import SuccessComponent from "./SuccessComponent";
 
 export default function RideInComponent() {
   const [formData, setFormData] = useState({
-    serviceType: "airport",
+    serviceType: "",
     pickupDate: "",
     pickupTime: "",
     pickupLocation: "",
@@ -24,6 +24,7 @@ export default function RideInComponent() {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [finalInfo, setFinalInfo] = useState(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     console.log("Updated finalInfo:", finalInfo);
@@ -31,7 +32,7 @@ export default function RideInComponent() {
 
   const resetState = () => {
     setFormData({
-      serviceType: "airport",
+      serviceType: "",
       pickupDate: "",
       pickupTime: "",
       pickupLocation: "",
@@ -44,6 +45,7 @@ export default function RideInComponent() {
     setPaymentSuccess(false);
     setTotalMileage(null);
     setFinalInfo(null);
+    setFormSubmitted(false);
   };
 
   const handleChange = (e) => {
@@ -60,6 +62,7 @@ export default function RideInComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setFormSubmitted(true);
 
     try {
       const response = await fetch("https://ride-reservation.vercel.app/api/rides",
@@ -71,6 +74,7 @@ export default function RideInComponent() {
       );
 
       const result = await response.json();
+
       setVehicles(result.vehicle || []);
       setTotalMileage(result.mileage || null);
     } catch (error) {
@@ -122,7 +126,6 @@ export default function RideInComponent() {
     <div className="app-container">
       <div className="form-container">
         <h2 className="form-title">Ride Reservation</h2>
-
         {!selectedVehicle ? (
           <>
             <RideForm
@@ -131,15 +134,28 @@ export default function RideInComponent() {
               handleSubmit={handleSubmit}
             />
             {loading && <LoadingSpinner />}
-            {vehicles.length > 0 && (
+            {/* {vehicles.length > 0 && (
               <VehicleList
                 vehicles={vehicles}
                 onVehicleSelect={handleVehicleSelect}
               />
-            )}
-            {totalMileage !== null && (
-              <MileageDisplay totalMileage={totalMileage} />
-            )}
+            )} */}
+            {vehicles.length > 0 ? (
+              <>
+                <VehicleList
+                  vehicles={vehicles}
+                  onVehicleSelect={handleVehicleSelect}
+                />
+                {totalMileage !== null && (
+                  <MileageDisplay totalMileage={totalMileage} />
+                )}
+              </>
+            ) : vehicles.length === 0 && !loading && formSubmitted ? (
+              <p className="no-vehicles-message">
+                Currently, we don't have the vehicle of your requirement. Please
+                get in touch with the office.
+              </p>
+            ) : null}
           </>
         ) : paymentSuccess ? (
           <SuccessComponent finalInfo={finalInfo} onReset={resetState} />

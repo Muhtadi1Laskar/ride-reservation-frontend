@@ -1,4 +1,4 @@
-export default function FormGroup ({ label, type, id, className, name, options, value, placeholder, onChange, required }) {
+export default function FormGroup ({ label, type, id, className, name, options, value, placeholder, onChange, required, min, max }) {
   return (
     <div className="form-divs">
       <label htmlFor={id} className="form-label">
@@ -12,7 +12,21 @@ export default function FormGroup ({ label, type, id, className, name, options, 
             </option>
           ))}
         </select>
-      ) : (
+      ) : type === "number" ? (
+        <input
+          type={type}
+          id={id}
+          className={className}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          required={required}
+          min={min}
+          max={max}
+        />
+
+      ): (
         <input
           type={type}
           id={id}

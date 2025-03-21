@@ -13,7 +13,7 @@ function RideForm({ formData, handleChange, handleSubmit }) {
 
     const services = [
         { value: "", text: "Select an Action", disabled: true },
-        { value: "airport", text: "Airport" },
+        { value: "Airport", text: "Airport" },
         { value: "Hotel", text: "Hotel" },
         { value: "City", text: "City" },
     ];
@@ -25,8 +25,8 @@ function RideForm({ formData, handleChange, handleSubmit }) {
                 type="select"
                 className="form-select"
                 name="serviceType"
-                value={formData.key}
-                placeholder="Enter the encryption key"
+                value={formData.serviceType}
+                placeholder="Select the Service Type"
                 onChange={handleChange}
                 options={services}
                 required
@@ -82,8 +82,9 @@ function RideForm({ formData, handleChange, handleSubmit }) {
                     className="form-select"
                     name="passengers"
                     value={formData.passengers}
-                    placeholder="Select Total Passengers"
                     onChange={handleChange}
+                    min={1}
+                    max={10}
                     required
                 />
 
@@ -93,8 +94,9 @@ function RideForm({ formData, handleChange, handleSubmit }) {
                     className="form-select"
                     name="luggage"
                     value={formData.luggage}
-                    placeholder="Select Total Luggage"
                     onChange={handleChange}
+                    min={1}
+                    max={10}
                     required
                 />
             </div>
