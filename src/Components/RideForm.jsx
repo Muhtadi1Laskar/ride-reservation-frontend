@@ -95,9 +95,8 @@ function RideForm({ formData, handleChange, handleSubmit }) {
                     name="luggage"
                     value={formData.luggage}
                     onChange={handleChange}
-                    min={1}
+                    min={0}
                     max={10}
-                    required
                 />
             </div>
             <button type="submit" className="submit-button">
