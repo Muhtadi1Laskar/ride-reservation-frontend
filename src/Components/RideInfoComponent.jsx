@@ -123,6 +123,11 @@ export default function RideInComponent() {
     }
   };
 
+  const handleBacks = () => {
+    setSelectedVehicle(null);
+    setPaymentSuccess(false);
+  }
+
   return (
     <div className="app-container">
       <div className="form-container">
@@ -159,6 +164,7 @@ export default function RideInComponent() {
             <PaymentForm
               onPaymentSubmit={handlePaymentSubmit}
               price={selectedVehicle?.price}
+              handleBack={handleBacks}
             />
             {loading && <LoadingSpinner />}
           </>

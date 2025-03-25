@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { IoIosArrowBack } from 'react-icons/io';
 import FormGroup from "./FormComponent";
 
-function PaymentForm({ onPaymentSubmit, price }) {
+function PaymentForm({ onPaymentSubmit, price, handleBack }) {
   const [paymentData, setPaymentData] = useState({
     paymentID: "",
     amount: price,
@@ -23,7 +24,12 @@ function PaymentForm({ onPaymentSubmit, price }) {
 
   return (
     <div className="payment-form-container">
-      <h4 className="payment-form-title">Payment Details</h4>
+      <div className="payment-header" onClick={handleBack}>
+        <button className="back-button">
+          <IoIosArrowBack />
+        </button>
+        <h3 className="payment-form-title">Ride Details</h3>
+      </div>
       <form onSubmit={handleSubmit} className="form-group">
         <FormGroup
           label="Payment Id"
@@ -58,7 +64,11 @@ function PaymentForm({ onPaymentSubmit, price }) {
         <button type="submit" className="submit-button">
           Submit Payment
         </button>
+        <button className="back-button" onClick={handleBack}>
+        <i className="fa fa-arrow-left" aria-hidden="true"></i>
+        </button>
       </form>
+      
     </div>
   );
 }
